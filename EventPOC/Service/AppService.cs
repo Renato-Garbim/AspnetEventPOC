@@ -13,5 +13,18 @@ namespace EventPOC.Service
         {
             Console.WriteLine($"AppService: your food '{eventArgs.Order.Item}' is prepared. ");
         }
+
+        public void OnOrderCanBeGerated(FoodPreparedEventArgs eventArgs)
+        {
+            string description = eventArgs.Order.Item;
+
+            if (string.IsNullOrEmpty(description))
+            {
+                Console.WriteLine($"AppService: your Order doesnt have any Item description. ");
+            }
+
+            Console.WriteLine($"AppService: Oder ready to go to the kitchen.");
+
+        }
     }
 }

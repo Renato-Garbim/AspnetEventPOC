@@ -11,6 +11,10 @@ var mailService = new MailService();
 orderingService.FoodPrepared += appService.OnFoodRepared;
 orderingService.FoodPrepared += mailService.OnFoodPrepared;
 
+
+
+orderingService.OrderCanBeGerated += appService.OnOrderCanBeGerated;
+
 orderingService.PrepareOrder(order);
 
 Console.ReadKey();
