@@ -13,7 +13,7 @@ namespace EventPOC.Service
     {
         public event EventHandler<FoodPreparedEventArgs> FoodPrepared;
         public event OrderCanBeGerated OrderCanBeGerated;
-        public event OrderCanBeGeratedFrom<FoodPreparedEventArgs> OrderCanBeGeneratedFrom;
+        public event EventHandler<FoodPreparedEventArgs> OrderCanBeGeneratedFrom;
         
 
         public void PrepareOrder(Order order)
@@ -27,9 +27,9 @@ namespace EventPOC.Service
 
         }
 
-        public virtual bool? OnOrderCanBeGeneratedFrom(Order order)
+        public virtual void OnOrderCanBeGeneratedFrom(Order order)
         {
-            return OrderCanBeGeneratedFrom?.Invoke(new FoodPreparedEventArgs { Order = order });
+            OrderCanBeGeneratedFrom?.Invoke(this, new FoodPreparedEventArgs { Order = order });            
         }
 
         protected virtual void OnOrderCanBeGerated(Order order)
